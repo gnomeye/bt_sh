@@ -8,6 +8,7 @@
 # program to use for torrent download
 program='/usr/bin/transmission-remote'
 progopts='-a'
+proghost='roach'
 # show N first matches by default
 limit=20
 # colors
@@ -124,7 +125,7 @@ if [ -z "$down" ] ; then
 elif [ $down -ge 1 ] ; then
 	if [ $down -le $limit ] ; then
 		echo "Downloading..."
-		$program $progopts "`echo "$r" | awk -F '|' 'NR=='$down'{print "magnet:?xt=urn:btih:" $1; exit}'`"
+		$program $proghost $progopts "`echo "$r" | awk -F '|' 'NR=='$down'{print "magnet:?xt=urn:btih:" $1; exit}'`"
 	else
 		echo "Number too high! ($down)"
 		unset IFS
